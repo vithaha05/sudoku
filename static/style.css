@@ -1,0 +1,155 @@
+:root {
+    --bg-color: #0f172a;
+    --panel-bg: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --grid-border: #475569;
+    --cell-bg: #1e293b;
+    --cell-input: #334155;
+    --highlight: #eab308;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    /* Reduced width since no sidebar */
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--grid-border);
+}
+
+h1 {
+    font-weight: 800;
+    font-size: 2rem;
+    background: linear-gradient(to right, var(--accent), #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.controls {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn.primary {
+    background-color: var(--accent);
+    color: white;
+}
+
+.btn.primary:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn.secondary {
+    background-color: var(--panel-bg);
+    color: var(--text-secondary);
+}
+
+.btn.secondary:hover {
+    background-color: var(--cell-input);
+    color: white;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 1px;
+    background-color: var(--grid-border);
+    border: 2px solid var(--grid-border);
+    width: fit-content;
+}
+
+.cell {
+    width: 50px;
+    height: 50px;
+    background-color: var(--cell-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.1s;
+}
+
+.cell input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    text-align: center;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+    outline: none;
+}
+
+/* Thick borders for 3x3 subgrids */
+.cell:nth-child(3n) {
+    border-right: 2px solid var(--grid-border);
+}
+
+.cell:nth-child(9n) {
+    border-right: none;
+}
+
+.grid>div:nth-child(n+19):nth-child(-n+27),
+.grid>div:nth-child(n+46):nth-child(-n+54) {
+    border-bottom: 2px solid var(--grid-border);
+}
+
+.cell.fixed {
+    color: var(--text-secondary);
+    background-color: #161e2e;
+}
+
+.status-panel {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
